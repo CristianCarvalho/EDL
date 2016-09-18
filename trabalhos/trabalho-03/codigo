@@ -1,0 +1,114 @@
+enemy = {}
+enemies_controller = {}
+enemies_controller.enemies = {}
+
+function checkCollisions(enemies, bullets)
+	for _, e in pairs(enemies, bullets) do
+		for _,v in pairs(bullets) do
+			if v.y <= e.y +e.height and v.x > e.x + e.width then
+			table.remove(enemies, i)
+			end
+		end
+	end
+end
+
+function love.load()
+	player = {}
+	player.x = 0
+	player.bullets = {}
+	player.cooldown = 20
+	player.fire = function()
+		if player.cooldown <= 0 then
+		player.cooldown=20
+		bullet = {}
+		bullet.x = player.x
+		bullet.y = 500
+		table.insert(player.bullets, bullet)
+		end
+	end
+	
+	
+	enemies_controller:spawnEnemy(0, 0)
+	enemies_controller:spawnEnemy(100, 0)
+	
+end
+
+function enemies_controller:spawnEnemy(x,y)
+
+	enemy = {}
+	enemy.x = x
+	enemy.y = y
+	enemy.width = 10
+	enemy.height = 10
+	enemy.bullets = {}
+	enemy.cooldown = 20
+	table.insert(self.enemies, enemy)
+
+end
+
+
+ function enemy:fire()
+	if self.cooldown <= 0 then
+		self.cooldown = 20
+		bullet = {}
+		bullet.x = self.x
+		bullet.y = self.y
+		table.insert(self.bullets, bullet)
+	end	
+ 
+ end
+
+function love.update(dt)
+
+	player.cooldown = player.cooldown - 1	
+	-- ao pressionar a seta para a direita, o retângulo se move para a direita
+	if love.keyboard.isDown("right") then
+		player.x = player.x + 1
+	-- ao pressionar a seta para a esquerda, o retângulo se move para a esquerda
+	elseif love.keyboard.isDown("left") then
+		player.x = player.x - 1
+	end
+	
+	-- ao pressionar a tecla espaço um disparo será feito
+	if love.keyboard.isDown("space") then
+		player.fire()
+	end
+
+	--faz o tiro ir para cima 
+	for i,v in ipairs (player.bullets) do
+		if v.y < - 1 then
+			table.remove(player.bullets, i)
+		end	
+		v.y = v.y - 1
+	end
+	--faz o "inimigo" ir para baixo
+	for _,e in pairs(enemies_controller.enemies) do
+		e.y = e.y + 0.5
+	end	
+	
+	checkCollisions(enemies_controller.enemies,player.bullets)
+end
+
+
+function love.draw()
+	-- insere um cor no retângulo criado
+	love.graphics.setColor(100,150,0)
+	-- cria um retângulo
+	love.graphics.rectangle("fill",player.x,500,100,23)
+	
+	
+	-- insere a cor branca nos retângulos que serão disparados
+	love.graphics.setColor(255,255,255)
+	--Cria pequenos retângulos que serão "disparados"
+	for _,v in pairs(player.bullets) do
+		love.graphics.rectangle("fill",v.x,v.y,10,10)
+	end
+
+	love.graphics.setColor(255,0,0)
+	--cria o retângulo "inimigo"
+	for _,e in pairs(enemies_controller.enemies) do
+		love.graphics.rectangle("fill",e.x,e.y,80,23)
+	end
+	
+
+end
