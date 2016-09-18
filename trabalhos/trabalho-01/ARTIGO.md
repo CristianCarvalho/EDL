@@ -93,5 +93,6 @@ Serviu como base para a linguagem Haskell.
 
 http://www.miranda.org.uk/
 
-**wikipedia**
+**wikipedia**  
+
 https://pt.wikipedia.org/wiki/Miranda_(linguagem_de_programa%C3%A7%C3%A3o)
