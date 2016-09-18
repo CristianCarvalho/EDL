@@ -86,3 +86,12 @@ int main (void)
  
 Miranda possui aplicações práticas principalmente no que diz respeito à prototipação rápida, ensinar programação funcional  e realizar pesquisas em programação funcional, bem como uma linguagem de especificação e uma ferramenta para programação em geral. Devido ao fato de Miranda não ser uma linguagem muito usada no mercado de software, há poucas aplicações escritas que possam ser encontradas na web.  
 Serviu como base para a linguagem Haskell.
+
+### Bibliografia
+
+**Site oficial**  
+
+http://www.miranda.org.uk/
+
+**wikipedia**
+https://pt.wikipedia.org/wiki/Miranda_(linguagem_de_programa%C3%A7%C3%A3o)
