@@ -52,7 +52,7 @@ function love.load()
 	-- Binding time: tempo de execução
 	-- i é uma variável local existentente dentro do for e seu endereço é determinado em tempo de execução
 end
--- RECADO PARA O PROFESSOR: NÃO CONSIGO VER UM EXEMPLO DIFERENTE NESTE CÓDIGO PARA OS PRÓXIMOS EXEMPLOS
+
 function enemies_controller:spawnEnemy(x, y)
 	enemy = {}
 	enemy.x = x
@@ -76,6 +76,10 @@ end
 	
 
 function love.update(dt)
+	-- nome: variável dt
+	-- Propriedade: endereço
+	-- Binding time: tempo de execução
+	-- como dt é uma varíavel local da função love.update, ela carrega em tempo de execução  
 	player.cooldown = player.cooldown - 1
 	
 	if love.keyboard.isDown("right") then
@@ -93,7 +97,10 @@ function love.update(dt)
 	for _,e in pairs(enemies_controller.enemies) do
 		e.y = e.y + 0.6
 	end
-	
+	--nome: Operador mais
+	--Propriedade: semantica
+	-- Binding time: tempo de compilação
+	-- é um operador que tem como função somar dois ou mais valores.
 	
 	for i,v in ipairs(player.bullets) do
 		if v.y < -10 then
@@ -107,7 +114,8 @@ function love.update(dt)
 end	
 
 function love.draw()
-
+	
+	
 	love.graphics.draw(background_image)
 	
 	love.graphics.draw(playerImg3, player.x, player.y, 0, 0.1)
@@ -117,11 +125,14 @@ function love.draw()
 		love.graphics.draw(playerImg, e.x, e.y, 0, 0.1)
 		
 	end
-	
-	
+	--nome:for
+	--Propriedade: palavra reservada
+	-- Binding time: design da linguagem
+	-- Após inicializar, o for testa a condição.Se ela resultar em verdadeira, o código é executado e em seguida o 'termino_de_cada_iteração" é executado, e assim vai até a condição ser falsa
 	for _,v in pairs (player.bullets) do
 		
 		love.graphics.draw(playerImg2, v.x, v.y, 0, 0.1)
 	end
 	
 end
+
