@@ -78,16 +78,23 @@ avaliarProg prog env =
                     (avaliarProg prog1 env)
                 else
                     (avaliarProg prog2 env)
-            While compara p   ->
+            While compara loop   ->
                 if (avaliarExp compara env) == 0 then
                     env
                 else
-                    (avaliarProg (Seq p prog) env)        
+                    (avaliarProg (Seq loop prog) env)        
                    
 
 ling : Prog -> Int
 ling prog = ((avaliarProg prog zero) "ret")
 p1=(Attr "ret" (Num 1))
 p2=(Seq(Attr "x" (Div (Num 8) (Num 2))) (Attr "ret" (Var "x")))
-p3 = (If (MenorIgual (Num 2) (Num 1)) (Attr "ret" (Num 14)) ((Attr "ret" (Num 81))))
-main = text(toString (ling p3))
+p3 = (If (MenorIgual (Num 4) (Num 3)) (Attr "ret" (Num 14)) ((Attr "ret" (Num 81))))
+p4 = (Seq(Attr "x" (Add (Num 8) (Num 2))) (Attr "ret" (Var "x")))
+p5 = (If (Igual (Num 5) (Num 5)) (Attr "ret" (Sub(Num 4)(Num 2))) (Attr "ret" (Mult(Num 4)(Num 2))))
+p6 = (Seq (Seq (Attr "x" (Num 5)) (Seq (Attr "i" (Num 10)) (While (MaiorIgual (Var "i") (Num 7)) (Seq (Attr "x" (Mult (Var "x") (Num 2))) (Attr "i" (Sub (Var "i") (Num 1)))))))(Attr "ret" (Var "x")))
+p7 = (If (Diferente (Num 8) (Num 6)) (Attr "ret" (Add(Num 4)(Num 2))) (Attr "ret" (Mult(Num 4)(Num 2))))
+p8 = (If (MaiorQue (Num 8) (Num 6)) (Attr "ret" (Num 1)) (Attr "ret" (Num 0)))
+p9 = (If (MenorQue (Num 7) (Num 7)) (Attr "ret" (Num 1)) (Attr "ret" (Num 0)))
+
+main = text(toString (ling p9))
