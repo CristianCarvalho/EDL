@@ -2,5 +2,4 @@
 
 # Apresentação
 
-Meu nome é *Cristian Carvalho dos Reis* e sou aluno matriculado na disciplina estruturas de linguagem.··
-Espero aprender bastante.
+Sou Cristian Carvalho dos Reis e período passado repeti de bobeira por culpa minha, neste período pretendo dar um gás maior. 
